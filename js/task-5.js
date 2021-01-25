@@ -1,12 +1,12 @@
 class Car {
 
   static getSpecs(car) {
-    console.log(`maxSpeed: ${car.maxSpeed}, speed: ${car.speed}, isOn: ${car.isOn}, distance: ${car.distance}, price: ${car.price}`);
+    console.log(`maxSpeed: ${car.maxSpeed}, speed: ${car.speed}, isOn: ${car.isOn}, distance: ${car.distance}, price: ${car._price}`);
   }
 
   constructor({ speed, price, maxSpeed, isOn, distance }) {
     this.speed = 0;
-    this.price = price;
+    this._price = price;
     this.maxSpeed = maxSpeed;
     this.isOn = false;
     this.distance = 0;
@@ -34,10 +34,10 @@ class Car {
       this.speed += value;
     }
   }
-
-  decelerate(value) {
-    if (this.speed + value >= 0) {
-      this.speed -= value;
+  // better variant
+  decelerate(value) { // const resultSpeed = this.speed - value;
+    if (this.speed - value >= 0) { // if (resultSpeed < 0) return;
+      this.speed -= value; // this.speed = resultSpeed;
     }
   }
 
